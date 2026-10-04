@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generate Tamu Undangan</title>
+<meta property="og:title" content="Generate Tamu Undangan">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--text:#1f2937;--muted:#6b7280;--line:#e5e7eb;--primary:#111827;--soft:#f3f4f6;--green:#22c55e;--radius:18px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+.container{max-width:1180px;margin:auto;padding:30px 18px 60px}.header{text-align:center;margin-bottom:24px}.header h1{font-size:clamp(28px,5vw,40px);margin:0 0 8px}.header p{color:var(--muted);margin:0}.client-badge{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;color:#4b5563;max-width:100%;overflow:hidden}.client-badge b{color:#111827}.client-badge span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.04)}.card h2{font-size:18px;margin:0 0 16px}.field{margin-bottom:16px}.field label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}.hint{font-size:12px;color:var(--muted);margin-top:6px}.textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit;outline:none;background:white;min-height:170px;resize:vertical}.textarea:focus{border-color:#9ca3af}.templates{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.template-option{border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;background:#fff}.template-option.active{border-color:var(--primary);background:var(--soft)}.template-option b{display:block;margin-bottom:3px}.template-option span{font-size:12px;color:var(--muted)}.preview{white-space:pre-wrap;background:#fafafa;border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:13px;line-height:1.55;max-height:210px;overflow:auto}.btn{border:0;border-radius:10px;padding:11px 13px;font-weight:800;cursor:pointer;font:inherit}.btn-primary{width:100%;background:var(--primary);color:#fff}.btn-soft{background:var(--soft);color:var(--text)}.btn-wa{background:#dcfce7;color:#166534}.btn-social{background:#eef2ff;color:#3730a3}.btn:hover{filter:brightness(.98)}
+.results{margin-top:22px}.result-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.result-head h2{margin:0}.count{color:var(--muted);font-size:13px}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:16px}.guest-table{width:100%;border-collapse:collapse;min-width:860px}.guest-table th,.guest-table td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}.guest-table th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;background:#fafafa}.guest-table td{font-size:14px}.guest-table tr:last-child td{border-bottom:0}.num{width:44px;color:#9ca3af}.name-cell{font-weight:800}.category-badge{display:inline-block;background:#f8eceb;color:#8b5e58;border:1px solid #f0d8d5;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;white-space:nowrap}.category-select{width:100%;min-width:145px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font:inherit;font-size:12px;font-weight:700;color:var(--text);outline:none}.category-select:focus{border-color:#9ca3af}.storage-note{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#4b5563;background:#ecfdf5;border:1px solid #bbf7d0;padding:7px 10px;border-radius:999px}.link-cell{max-width:320px;color:#6b7280;font-size:12px;word-break:break-all}.actions{display:flex;gap:7px;flex-wrap:wrap}.actions .btn{padding:8px 10px;font-size:12px;white-space:nowrap}.empty{text-align:center;padding:35px;color:var(--muted);border:1px dashed var(--line);border-radius:16px;background:#fff}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#111827;color:white;padding:11px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:99;font-size:13px}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.platform-menu{position:fixed;z-index:100;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 18px 50px rgba(0,0,0,.15);display:none;min-width:180px}.platform-menu.show{display:block}.platform-menu button{display:block;width:100%;text-align:left;background:transparent;border:0;padding:10px 11px;border-radius:9px;cursor:pointer;font:inherit;font-size:13px}.platform-menu button:hover{background:#f3f4f6}
+@media(max-width:780px){.grid{grid-template-columns:1fr}.templates{grid-template-columns:1fr}.container{padding-top:20px}.card{padding:16px}.result-head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+<h1>Generate Tamu Undangan</h1>
+    <p>Masukkan nama tamu, pilih pesan, lalu bagikan undangan personal.</p>
+    <div class="card" style="max-width:760px;margin:18px auto 0;text-align:left">
+      <div class="field" style="margin-bottom:0">
+        <label>URL Undangan</label>
+        <input id="invitationUrlInput" class="textarea" style="min-height:0;height:auto;resize:none" type="url"
+          placeholder="Contoh: https://domain-undangan.com/andi-siti">
+        <div class="hint">Masukkan link undangan utama. Link personal tiap tamu akan dibuat otomatis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>1. Masukkan Nama Tamu</h2>
+      <div class="field">
+        <label>Daftar Nama Tamu</label>
+        <textarea id="guestNames" class="textarea" placeholder="Budi &amp; Pasangan&#10;Pak Andi &amp; Keluarga&#10;Siti Rahma"></textarea>
+        <div class="hint">Satu nama per baris. Bisa paste banyak nama sekaligus dari Excel/Google Sheets.</div>
+      </div>
+      <button class="btn btn-primary" id="generateBtn">Masukkan ke Daftar Tamu</button>
+    </div>
+
+    <div class="card">
+      <h2>2. Pilih Kalimat Pesan</h2>
+      <div class="templates" id="templateChoices"></div>
+      <div class="field" style="margin-top:16px">
+        <label>Preview Pesan</label>
+        <div id="messagePreview" class="preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="result-head">
+      <div><h2>Daftar Tamu</h2><div class="hint">Pilih tujuan broadcast pada masing-masing tamu.</div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div id="resultCount" class="count">0 tamu</div><button class="btn btn-soft" id="clearAllBtn" style="padding:8px 10px;font-size:12px">Hapus Semua</button></div>
+    </div>
+    <div id="resultArea"><div class="empty">Belum ada nama tamu yang dimasukkan.</div></div>
+  </div>
+
+</div>
+
+<div id="platformMenu" class="platform-menu">
+  <button data-platform="telegram">Telegram</button>
+  <button data-platform="facebook">Facebook</button>
+  <button data-platform="x">X / Twitter</button>
+  <button data-platform="native">Share lainnya…</button>
+  <button data-platform="copy">Salin pesan</button>
+</div>
+<div id="toast" class="toast">Berhasil disalin</div>
+
+
+
+
+
+<script>
+
+/*
+  LINK GENERATOR PER KLIEN
+  =========================
+  Berikan klien URL generator seperti:
+  generator.html?url=https%3A%2F%2Fnamamempelai.com
+
+  Atau jika link undangan punya path:
+  generator.html?url=https%3A%2F%2Fdomain.com%2Fandi-siti
+
+  Klien tidak perlu mengetik link undangan. Sistem mengambilnya dari parameter ?url=.
+*/
+
+const templates=[
+{id:'formal',name:'Formal',desc:'Sopan untuk keluarga, relasi, dan tamu resmi',text:`Dengan hormat,
+
+Kepada Yth. {nama_tamu}
+
+Kami dengan penuh kebahagiaan bermaksud mengundang Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara pernikahan kami.
+
+Informasi lengkap mengenai nama mempelai, hari/tanggal, waktu, lokasi, susunan acara, dan RSVP dapat dilihat melalui undangan berikut:
+
+{link_undangan}
+
+Kehadiran serta doa restu Bapak/Ibu/Saudara/i merupakan kehormatan dan kebahagiaan bagi kami. Atas perhatian dan kesediaannya, kami mengucapkan terima kasih.
+
+Hormat kami,
+Kedua Mempelai & Keluarga`},
+{id:'informal',name:'Informal',desc:'Santai, hangat, dan modern',text:`Hi {nama_tamu}! 👋
+
+We’re happy to invite you to our wedding! 💍✨
+
+Save the date and check all the wedding details, including the date, time, venue, and RSVP here:
+
+{link_undangan}
+
+After we say “I do,” let’s celebrate together with great food, music, and fun moments!
+
+Hope to see you there! 🤍
+Best wishes,
+The Bride & Groom`},
+{id:'islami',name:'Islami',desc:'Nuansa Islami dan doa restu',text:`Bismillahirrahmanirrahim
+
+Assalamu’alaikum warahmatullahi wabarakatuh
+
+Kepada Yth. {nama_tamu}
+
+Dengan memohon rahmat serta ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
+
+InsyaAllah informasi lengkap mengenai kedua mempelai, hari/tanggal, waktu, dan tempat dapat dilihat melalui undangan berikut:
+
+{link_undangan}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu kepada kedua mempelai.
+
+Wassalamu’alaikum warahmatullahi wabarakatuh.`},
+{id:'english',name:'English',desc:'Formal wedding invitation in English',text:`Dear {nama_tamu},
+
+We cordially invite you to attend our wedding ceremony and celebrate this special occasion with us.
+
+Please find the complete details of the bride and groom, date, time, venue, and RSVP through our wedding invitation:
+
+{link_undangan}
+
+The ceremony will be followed by a reception. We would be delighted to have you join us and share in our happiness.
+
+Sincerely,
+The Bride & Groom`},
+{id:'teman',name:'Teman Dekat',desc:'Akrab untuk sahabat dan circle dekat',text:`💌💍 Undangan Pernikahan 💍💌
+
+Halo, {nama_tamu}!
+
+Dengan rasa syukur dan bahagia, kami ingin menyampaikan kabar baik ini kepadamu. InsyaAllah, kami akan melangsungkan pernikahan dan bakal senang banget kalau kamu bisa hadir di hari spesial kami. 🤍
+
+Detail acara, lokasi, peta, dan konfirmasi kehadiran bisa kamu lihat di sini:
+
+{link_undangan}
+
+Kehadiran serta doamu tentu menjadi kebahagiaan tersendiri bagi kami. Semoga kamu bisa meluangkan waktu untuk datang dan merayakan momen bahagia ini bersama.
+
+Salam hangat,
+Kedua Mempelai 🤍
+
+Mohon konfirmasi kehadiran, ya. Terima kasih! 🙏`},
+{id:'rekan',name:'Rekan Kerja',desc:'Profesional untuk kolega kantor',text:`UNDANGAN PERNIKAHAN
+
+Yth.
+{nama_tamu}
+di Tempat
+
+Dengan mengucap rasa syukur kepada Tuhan Yang Maha Esa, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara pernikahan kami.
+
+Informasi lengkap mengenai kedua mempelai, hari/tanggal, waktu akad dan resepsi, lokasi, peta, serta konfirmasi kehadiran dapat dilihat melalui:
+
+{link_undangan}
+
+Merupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i dapat meluangkan waktu untuk hadir serta memberikan doa dan restu.
+
+Demikian undangan ini kami sampaikan. Atas perhatian dan kesediaannya, kami ucapkan terima kasih.
+
+Hormat kami,
+Kedua Mempelai`},
+{id:'ortu',name:'Teman Orang Tua',desc:'Sopan dan Islami untuk relasi orang tua',text:`Bismillahirrahmanirrahim
+Assalamu’alaikum Warahmatullahi Wabarakatuh
+
+Kepada Yth. {nama_tamu}
+
+Dengan memohon rahmat serta ridho Allah SWT, kami bermaksud menyelenggarakan acara resepsi pernikahan putra dan putri kami.
+
+Informasi lengkap mengenai hari/tanggal, waktu, tempat, dan kedua mempelai dapat dilihat melalui undangan berikut:
+
+{link_undangan}
+
+Besar harapan kami Bapak/Ibu/Saudara/i dapat berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas perhatian dan kehadirannya, kami sampaikan terima kasih yang sebesar-besarnya.
+
+Jazakumullahu khairan katsiran.
+Wassalamu’alaikum Warahmatullahi Wabarakatuh.`},
+{id:'kepaladesa',name:'Kepala Desa',desc:'Resmi untuk kepala desa atau pejabat',text:`Kepada Yth.
+Bapak/Ibu Kepala Desa
+{nama_tamu}
+di Tempat
+
+Assalamu’alaikum warahmatullahi wabarakatuh.
+
+Dengan hormat, melalui pesan ini kami bermaksud mengundang Bapak/Ibu untuk berkenan hadir dalam acara pernikahan kami.
+
+Informasi lengkap mengenai kedua mempelai, hari/tanggal, waktu, dan tempat dapat dilihat melalui undangan berikut:
+
+{link_undangan}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu dapat meluangkan waktu untuk hadir serta memberikan doa restu.
+
+Demikian undangan ini kami sampaikan. Atas perhatian dan kesediaan Bapak/Ibu, kami ucapkan terima kasih.
+
+Wassalamu’alaikum warahmatullahi wabarakatuh.`}
+];
+
+let activeTemplate='formal';
+let guests=[];
+let shareIndex=null;
+const qs=new URLSearchParams(location.search);
+const URL_KEY='guest_generator_invitation_url';
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function safeRemove(k){try{localStorage.removeItem(k)}catch(e){}}
+// Prioritas: ?url= / ?base= di link > URL yang tersimpan di browser
+let invitationBaseUrl=normalizeUrl(qs.get('url') || qs.get('base') || safeGet(URL_KEY) || '');
+const storageKey='mudahmenikah_guests_'+encodeURIComponent(location.pathname);
+const guestNames=document.getElementById('guestNames');
+const choices=document.getElementById('templateChoices');
+const preview=document.getElementById('messagePreview');
+const resultArea=document.getElementById('resultArea');
+const resultCount=document.getElementById('resultCount');
+const toast=document.getElementById('toast');
+const platformMenu=document.getElementById('platformMenu');
+
+function normalizeUrl(url){
+  let v=(url||'').trim(); if(!v)return '';
+  const clean=u=>{ if(!/^https?:$/.test(u.protocol))return ''; if(!u.hostname.includes('.')&&u.hostname!=='localhost')return ''; u.searchParams.delete('to'); return u.toString().replace(/\?$/,''); };
+  try{ return clean(new URL(v)); }
+  catch(e){ try{ return clean(new URL('https://'+v)); }catch(_){return '';} }
+}
+function makeGuestUrl(name){
+  if(!invitationBaseUrl)return '#';
+  const u=new URL(invitationBaseUrl);u.searchParams.set('to',name);u.search=u.search.replace(/\+/g,'%20');return u.toString();
+}
+function getTemplate(){return templates.find(t=>t.id===activeTemplate)}
+function fillMessage(name,link){return getTemplate().text.replaceAll('{nama_tamu}',()=>name).replaceAll('{link_undangan}',()=>link)}
+function escapeHtml(str){return String(str).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}
+function showToast(msg='Berhasil disalin'){toast.textContent=msg;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),1700)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);showToast()}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast()}}
+
+function saveGuests(){
+  try{localStorage.setItem(storageKey,JSON.stringify(guests));}catch(e){console.warn('Gagal menyimpan data tamu',e);}
+}
+function loadGuests(){
+  try{
+    const raw=localStorage.getItem(storageKey);
+    if(!raw)return;
+    const parsed=JSON.parse(raw);
+    if(Array.isArray(parsed))guests=parsed.filter(g=>g&&typeof g.name==='string').map(g=>({name:g.name,templateId:templates.some(t=>t.id===g.templateId)?g.templateId:'formal'}));
+  }catch(e){console.warn('Gagal memuat data tamu',e);}
+}
+
+function renderTemplates(){
+  choices.innerHTML=templates.map(t=>`<div class="template-option ${t.id===activeTemplate?'active':''}" data-id="${t.id}"><b>${t.name}</b><span>${t.desc}</span></div>`).join('');
+  choices.querySelectorAll('.template-option').forEach(el=>el.onclick=()=>{activeTemplate=el.dataset.id;renderTemplates();updatePreview()});
+}
+function updatePreview(){
+  const firstGuest=guests[0];
+  const sample=(guestNames.value.split(/\n+/).map(v=>v.trim()).filter(Boolean)[0]||(firstGuest?(typeof firstGuest==='string'?firstGuest:firstGuest.name):'Budi & Pasangan'));
+  const link=invitationBaseUrl?makeGuestUrl(sample):'https://namamempelai.com?to='+encodeURIComponent(sample);
+  preview.textContent=fillMessage(sample,link);
+}
+function addGuests(){
+  if(!invitationBaseUrl){alert('Isi URL Undangan dulu (contoh: https://domain-undangan.com/andi-siti).');invitationUrlInput.focus();return;}
+  const incoming=guestNames.value.split(/\n+/).map(v=>v.trim()).filter(Boolean);
+  if(!incoming.length){alert('Masukkan minimal satu nama tamu.');return;}
+  const seen=new Set(guests.map(g=>(typeof g==='string'?g:g.name).toLowerCase()));
+  let added=0,skipped=0;
+  incoming.forEach(n=>{if(!seen.has(n.toLowerCase())){guests.push({name:n,templateId:activeTemplate});seen.add(n.toLowerCase());added++}else skipped++});
+  guestNames.value=''; saveGuests(); updatePreview(); renderTable();
+  showToast(`${added} tamu ditambahkan`+(skipped?`, ${skipped} duplikat dilewati`:''));
+}
+function renderTable(){
+  resultCount.textContent=`${guests.length} tamu`;
+  if(!guests.length){resultArea.innerHTML='<div class="empty">Belum ada nama tamu yang dimasukkan.</div>';return;}
+  resultArea.innerHTML=`<div class="table-wrap"><table class="guest-table"><thead><tr><th>#</th><th>Nama Tamu</th><th>Kategori Pesan</th><th>Link Personal</th><th>Aksi / Broadcast</th></tr></thead><tbody>${guests.map((guest,i)=>{
+    const name=typeof guest==='string'?guest:guest.name;
+    const templateId=typeof guest==='string'?activeTemplate:guest.templateId;
+    const link=makeGuestUrl(name);
+    const options=templates.map(t=>`<option value="${t.id}" ${t.id===templateId?'selected':''}>${escapeHtml(t.name)}</option>`).join('');
+    return `<tr><td class="num">${i+1}</td><td class="name-cell">${escapeHtml(name)}</td><td><select class="category-select" data-category-index="${i}">${options}</select></td><td class="link-cell">${escapeHtml(link)}</td><td><div class="actions"><button class="btn btn-wa" data-action="wa" data-index="${i}">WhatsApp</button><button class="btn btn-social" data-action="social" data-index="${i}">Sosmed ▾</button><button class="btn btn-soft" data-action="copymessage" data-index="${i}">📋 Copy Pesan</button><button class="btn btn-soft" data-action="remove" data-index="${i}">Hapus</button></div></td></tr>`
+  }).join('')}</tbody></table></div>`;
+}
+function currentShareData(i){const guest=guests[i],name=typeof guest==='string'?guest:guest.name,templateId=typeof guest==='string'?activeTemplate:guest.templateId,link=makeGuestUrl(name),template=templates.find(t=>t.id===templateId)||getTemplate(),message=template.text.replaceAll('{nama_tamu}',()=>name).replaceAll('{link_undangan}',()=>link);return{name,link,message}}
+function openSocial(platform,data){
+  const text=encodeURIComponent(data.message),url=encodeURIComponent(data.link);
+  if(platform==='telegram')window.open(`https://t.me/share/url?url=${url}&text=${encodeURIComponent(data.message.replace(data.link,'').trim())}`,'_blank');
+  else if(platform==='facebook')window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`,'_blank');
+  else if(platform==='x')window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent('Undangan pernikahan untuk '+data.name)}&url=${url}`,'_blank');
+  else if(platform==='copy')copyText(data.message);
+  else if(platform==='native'){
+    if(navigator.share)navigator.share({title:'Undangan Pernikahan',text:data.message,url:data.link}).catch(()=>{});
+    else copyText(data.message);
+  }
+}
+
+resultArea.addEventListener('click',e=>{
+  const btn=e.target.closest('button[data-action]');if(!btn)return;
+  const i=Number(btn.dataset.index),action=btn.dataset.action,data=currentShareData(i);
+  if(action==='wa')window.open('https://wa.me/?text='+encodeURIComponent(data.message),'_blank');
+  if(action==='copymessage')copyText(data.message);
+  if(action==='remove'){if(!confirm('Hapus "'+data.name+'" dari daftar?'))return;guests.splice(i,1);saveGuests();renderTable();}
+  if(action==='social'){
+    shareIndex=i;const r=btn.getBoundingClientRect();platformMenu.style.left=Math.min(r.left,innerWidth-195)+'px';platformMenu.style.top=(r.bottom+7)+'px';platformMenu.classList.add('show');
+  }
+});
+resultArea.addEventListener('change',e=>{
+  const select=e.target.closest('select[data-category-index]');
+  if(!select)return;
+  const i=Number(select.dataset.categoryIndex);
+  if(!guests[i])return;
+  guests[i].templateId=select.value;
+  saveGuests();
+  showToast('Kategori diperbarui');
+});
+platformMenu.addEventListener('click',e=>{const btn=e.target.closest('button[data-platform]');if(!btn||shareIndex===null)return;openSocial(btn.dataset.platform,currentShareData(shareIndex));platformMenu.classList.remove('show')});
+document.addEventListener('click',e=>{if(!platformMenu.contains(e.target)&&!e.target.closest('[data-action="social"]'))platformMenu.classList.remove('show')});
+
+document.getElementById('generateBtn').addEventListener('click',addGuests);
+document.getElementById('clearAllBtn').addEventListener('click',()=>{if(!guests.length)return;if(!confirm('Hapus SEMUA '+guests.length+' tamu dari daftar?'))return;guests=[];saveGuests();renderTable();showToast('Daftar dikosongkan');});guestNames.addEventListener('input',updatePreview);
+
+const invitationUrlInput=document.getElementById('invitationUrlInput');
+invitationUrlInput.value=invitationBaseUrl;
+invitationUrlInput.addEventListener('input',()=>{
+  invitationBaseUrl=normalizeUrl(invitationUrlInput.value);
+  if(invitationBaseUrl)safeSet(URL_KEY,invitationBaseUrl);
+  else safeRemove(URL_KEY);
+  updatePreview();
+  renderTable();
+});
+loadGuests();renderTemplates();updatePreview();renderTable();
+
+</script>
+</body>
+</html>

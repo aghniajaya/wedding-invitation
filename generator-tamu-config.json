@@ -1,0 +1,64 @@
+{
+  "generator": "Generate Tamu Undangan",
+  "version": "1.1",
+  "placeholders": {
+    "guest_name": "{nama_tamu}",
+    "invitation_link": "{link_undangan}"
+  },
+  "url": {
+    "invitation_param": "url",
+    "alt_invitation_param": "base",
+    "guest_param": "to",
+    "example": "tool.html?url=https%3A%2F%2Fdomain.com%2Fandi-siti"
+  },
+  "templates": [
+    {
+      "id": "formal",
+      "name": "Formal",
+      "desc": "Sopan untuk keluarga, relasi, dan tamu resmi",
+      "text": "Dengan hormat,\n\nKepada Yth. {nama_tamu}\n\nKami dengan penuh kebahagiaan bermaksud mengundang Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara pernikahan kami.\n\nInformasi lengkap mengenai nama mempelai, hari/tanggal, waktu, lokasi, susunan acara, dan RSVP dapat dilihat melalui undangan berikut:\n\n{link_undangan}\n\nKehadiran serta doa restu Bapak/Ibu/Saudara/i merupakan kehormatan dan kebahagiaan bagi kami. Atas perhatian dan kesediaannya, kami mengucapkan terima kasih.\n\nHormat kami,\nKedua Mempelai & Keluarga"
+    },
+    {
+      "id": "informal",
+      "name": "Informal",
+      "desc": "Santai, hangat, dan modern",
+      "text": "Hi {nama_tamu}! 👋\n\nWe’re happy to invite you to our wedding! 💍✨\n\nSave the date and check all the wedding details, including the date, time, venue, and RSVP here:\n\n{link_undangan}\n\nAfter we say “I do,” let’s celebrate together with great food, music, and fun moments!\n\nHope to see you there! 🤍\nBest wishes,\nThe Bride & Groom"
+    },
+    {
+      "id": "islami",
+      "name": "Islami",
+      "desc": "Nuansa Islami dan doa restu",
+      "text": "Bismillahirrahmanirrahim\n\nAssalamu’alaikum warahmatullahi wabarakatuh\n\nKepada Yth. {nama_tamu}\n\nDengan memohon rahmat serta ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\nInsyaAllah informasi lengkap mengenai kedua mempelai, hari/tanggal, waktu, dan tempat dapat dilihat melalui undangan berikut:\n\n{link_undangan}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu kepada kedua mempelai.\n\nWassalamu’alaikum warahmatullahi wabarakatuh."
+    },
+    {
+      "id": "english",
+      "name": "English",
+      "desc": "Formal wedding invitation in English",
+      "text": "Dear {nama_tamu},\n\nWe cordially invite you to attend our wedding ceremony and celebrate this special occasion with us.\n\nPlease find the complete details of the bride and groom, date, time, venue, and RSVP through our wedding invitation:\n\n{link_undangan}\n\nThe ceremony will be followed by a reception. We would be delighted to have you join us and share in our happiness.\n\nSincerely,\nThe Bride & Groom"
+    },
+    {
+      "id": "teman",
+      "name": "Teman Dekat",
+      "desc": "Akrab untuk sahabat dan circle dekat",
+      "text": "💌💍 Undangan Pernikahan 💍💌\n\nHalo, {nama_tamu}!\n\nDengan rasa syukur dan bahagia, kami ingin menyampaikan kabar baik ini kepadamu. InsyaAllah, kami akan melangsungkan pernikahan dan bakal senang banget kalau kamu bisa hadir di hari spesial kami. 🤍\n\nDetail acara, lokasi, peta, dan konfirmasi kehadiran bisa kamu lihat di sini:\n\n{link_undangan}\n\nKehadiran serta doamu tentu menjadi kebahagiaan tersendiri bagi kami. Semoga kamu bisa meluangkan waktu untuk datang dan merayakan momen bahagia ini bersama.\n\nSalam hangat,\nKedua Mempelai 🤍\n\nMohon konfirmasi kehadiran, ya. Terima kasih! 🙏"
+    },
+    {
+      "id": "rekan",
+      "name": "Rekan Kerja",
+      "desc": "Profesional untuk kolega kantor",
+      "text": "UNDANGAN PERNIKAHAN\n\nYth.\n{nama_tamu}\ndi Tempat\n\nDengan mengucap rasa syukur kepada Tuhan Yang Maha Esa, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara pernikahan kami.\n\nInformasi lengkap mengenai kedua mempelai, hari/tanggal, waktu akad dan resepsi, lokasi, peta, serta konfirmasi kehadiran dapat dilihat melalui:\n\n{link_undangan}\n\nMerupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i dapat meluangkan waktu untuk hadir serta memberikan doa dan restu.\n\nDemikian undangan ini kami sampaikan. Atas perhatian dan kesediaannya, kami ucapkan terima kasih.\n\nHormat kami,\nKedua Mempelai"
+    },
+    {
+      "id": "ortu",
+      "name": "Teman Orang Tua",
+      "desc": "Sopan dan Islami untuk relasi orang tua",
+      "text": "Bismillahirrahmanirrahim\nAssalamu’alaikum Warahmatullahi Wabarakatuh\n\nKepada Yth. {nama_tamu}\n\nDengan memohon rahmat serta ridho Allah SWT, kami bermaksud menyelenggarakan acara resepsi pernikahan putra dan putri kami.\n\nInformasi lengkap mengenai hari/tanggal, waktu, tempat, dan kedua mempelai dapat dilihat melalui undangan berikut:\n\n{link_undangan}\n\nBesar harapan kami Bapak/Ibu/Saudara/i dapat berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas perhatian dan kehadirannya, kami sampaikan terima kasih yang sebesar-besarnya.\n\nJazakumullahu khairan katsiran.\nWassalamu’alaikum Warahmatullahi Wabarakatuh."
+    },
+    {
+      "id": "kepaladesa",
+      "name": "Kepala Desa",
+      "desc": "Resmi untuk kepala desa atau pejabat",
+      "text": "Kepada Yth.\nBapak/Ibu Kepala Desa\n{nama_tamu}\ndi Tempat\n\nAssalamu’alaikum warahmatullahi wabarakatuh.\n\nDengan hormat, melalui pesan ini kami bermaksud mengundang Bapak/Ibu untuk berkenan hadir dalam acara pernikahan kami.\n\nInformasi lengkap mengenai kedua mempelai, hari/tanggal, waktu, dan tempat dapat dilihat melalui undangan berikut:\n\n{link_undangan}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu dapat meluangkan waktu untuk hadir serta memberikan doa restu.\n\nDemikian undangan ini kami sampaikan. Atas perhatian dan kesediaan Bapak/Ibu, kami ucapkan terima kasih.\n\nWassalamu’alaikum warahmatullahi wabarakatuh."
+    }
+  ]
+}
