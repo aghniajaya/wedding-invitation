@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Download JSON</title>
+<style>
+:root{--bg:#faf7f5;--card:#fff;--text:#1f2937;--muted:#6b7280;--line:#eadfdb;--btn:#111827;--btnt:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#17120f;--card:#221b17;--text:#f3ece8;--muted:#a8998f;--line:#3a2f29;--btn:#f3ece8;--btnt:#17120f}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;max-width:380px;width:100%}
+h1{font-size:20px;margin:0 0 8px}
+p{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.5}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15px;border-radius:12px;padding:12px 22px;background:var(--btn);color:var(--btnt)}
+small{display:block;margin-top:14px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Download file JSON</h1>
+  <p>Unduhan akan dimulai otomatis. Jika belum mulai, klik tombol di bawah.</p>
+  <a class="btn" id="dl" href="generator-tamu-config.json" download="generator-tamu-config.json">Lanjutkan Download</a>
+  <small>generator-tamu-config.json</small>
+</div>
+<script>
+window.addEventListener('load',function(){setTimeout(function(){var a=document.getElementById('dl');if(a)a.click()},600)});
+</script>
+</body>
+</html>
